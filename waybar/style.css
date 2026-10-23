@@ -1,0 +1,176 @@
+/* Cobalt2 palette, defined once */
+@define-color base    rgba(25, 53, 73, 0.85);
+@define-color surface #185294;
+@define-color text    #FFFFFF;
+@define-color dim     #8fbfdc;
+@define-color accent  #00AAFF;
+@define-color gold    #FFC600;
+@define-color good    #3AD900;
+@define-color warn    #FF9A00;
+@define-color crit    #FF628C;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", FontAwesome, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 1;
+
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: @text;
+}
+
+/* One shared look for every pill */
+#workspaces,
+#window,
+#custom-media,
+#system,
+#clock,
+#custom-power {
+  background: @base;
+  color: @text;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 170, 255, 0.35);
+}
+
+/* Hide the window pill when no window is focused */
+window#waybar.empty #window {
+  background: transparent;
+  border: none;
+}
+
+/* Workspaces */
+button {
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#workspaces {
+  padding: 0 6px;
+}
+
+#workspaces button {
+  color: @dim;
+  background: transparent;
+  padding: 0 8px;
+  margin: 3px 2px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 170, 255, 0.2);
+  color: @text;
+}
+
+#workspaces button.active {
+  background: @surface;
+  color: @gold;
+}
+
+#workspaces button.urgent {
+  background: @crit;
+  color: @base;
+}
+
+/* Media */
+#custom-media {
+  color: @gold;
+}
+
+/* System group: small inner spacing, accent colors */
+#pulseaudio,
+#network,
+#power-profiles-daemon,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#battery {
+  padding: 0 8px;
+  background: transparent;
+  color: @text;
+}
+
+#pulseaudio {
+  color: @accent;
+}
+#pulseaudio.muted {
+  color: @dim;
+}
+
+#network {
+  color: @good;
+}
+#network.disconnected {
+  color: @crit;
+}
+
+#cpu {
+  color: @gold;
+}
+#memory {
+  color: @dim;
+}
+
+#temperature {
+  color: @text;
+}
+#temperature.critical {
+  color: @crit;
+}
+
+#battery {
+  color: @good;
+}
+#battery.warning:not(.charging) {
+  color: @warn;
+}
+#battery.critical:not(.charging) {
+  color: @crit;
+}
+#battery.charging,
+#battery.plugged {
+  color: @good;
+}
+
+#power-profiles-daemon.performance {
+  color: @crit;
+}
+#power-profiles-daemon.balanced {
+  color: @accent;
+}
+#power-profiles-daemon.power-saver {
+  color: @good;
+}
+
+/* Clock and power button */
+#clock {
+  color: @gold;
+}
+#clock:hover {
+  color: @text;
+}
+
+#custom-power {
+  color: @crit;
+  padding: 0 12px;
+}
+#custom-power:hover {
+  background: @crit;
+  color: @base;
+}
+
+/* Tooltips */
+tooltip {
+  background: rgba(25, 53, 73, 0.95);
+  border: 1px solid @accent;
+  border-radius: 10px;
+}
+tooltip label {
+  color: @text;
+}
